@@ -1,0 +1,17 @@
+{
+  "name": "frontend",
+  "private": true,
+  "scripts": {
+    "start": "npm run dev",
+    "build:clean": "rimraf static/css/output.css",
+    "build:tailwind": "tailwindcss -i static/css/input.css -o static/css/output.css --minify",
+    "build": "npm run build:clean && npm run build:tailwind",
+    "dev": "tailwindcss -i static/css/input.css -o static/css/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "flowbite": "^2.2.0",
+    "@tailwindcss/cli": "^0.1.2",
+    "rimraf": "^5.0.5"
+  }
+}

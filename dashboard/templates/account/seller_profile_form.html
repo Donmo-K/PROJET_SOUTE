@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Soumettre mon dossier vendeur{% endblock %}
+
+{% block content %}
+
+<div class="max-w-2xl mx-auto bg-white shadow-xl rounded-2xl p-8 mt-10">
+    <h1 class="text-2xl font-bold text-gray-800 text-center mb-2">
+        Soumettre mon dossier vendeur
+    </h1>
+    
+    <p class="text-center text-gray-600 mb-8">
+        Merci de remplir ce formulaire avec soin.<br>
+        Votre compte vendeur sera activé après validation (24-72h en général).
+    </p>
+
+    {% if messages %}
+        <div class="space-y-3 mb-6">
+            {% for message in messages %}
+                <div class="p-4 rounded-lg {% if message.tags == 'success' %}bg-green-50 text-green-800 border-l-4 border-green-500{% elif message.tags == 'error' %}bg-red-50 text-red-800 border-l-4 border-red-500{% else %}bg-blue-50 text-blue-800 border-l-4 border-blue-500{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
+        <p class="text-sm text-blue-800">
+            <strong>Important :</strong> les documents doivent être lisibles (photo nette ou scan).<br>
+            Formats acceptés : JPG, PNG, PDF — Taille max : 5 Mo par fichier.
+        </p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="space-y-6">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div>
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <p class="mt-1 text-sm text-gray-500">{{ field.help_text }}</p>
+                {% endif %}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200 shadow-md">
+            Soumettre mon dossier pour validation
+        </button>
+    </form>
+
+    <p class="text-center text-sm text-gray-500 mt-6">
+        Une fois soumis, vous recevrez une notification dès que votre dossier sera traité.
+    </p>
+</div>
+
+{% endblock %}

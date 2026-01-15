@@ -1,0 +1,25 @@
+<h1>Dashboard Administrateur</h1>
+
+<p>Bienvenue {{ request.user.email }}</p>
+
+<hr>
+
+<h3>📊 Statistiques</h3>
+
+<ul>
+    <li>👥 Utilisateurs total : {{ total_users }}</li>
+    <li>🛒 Acheteurs : {{ total_acheteurs }}</li>
+    <li>🏠 Vendeurs : {{ total_vendeurs }}</li>
+    <li>✅ Vendeurs validés : {{ vendeurs_valides }}</li>
+    <li>⏳ Vendeurs en attente : {{ vendeurs_en_attente }}</li>
+    <li>📁 Dossiers vendeurs : {{ total_dossiers }}</li>
+</ul>
+
+<hr>
+
+<h3>⚙️ Actions rapides</h3>
+
+<ul>
+    <li><a href="/admin/account/user/">Gérer les utilisateurs</a></li>
+    <li><a href="/admin/account/sellerprofile/">Valider les vendeurs</a></li>
+</ul>
