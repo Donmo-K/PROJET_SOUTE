@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.contrib.auth.hashers import check_password
 
@@ -19,7 +20,7 @@ User = get_user_model()
 # =====================================================================
 # INSCRIPTION
 # =====================================================================
-@never_cache
+@method_decorator(never_cache, name='dispatch')
 class RegisterView(View):  # ← corrigé : RegisterViewTest → RegisterView (ton nom original)
     template_name = 'account/register.html'
 
@@ -41,7 +42,7 @@ class RegisterView(View):  # ← corrigé : RegisterViewTest → RegisterView (t
 # =====================================================================
 # CONNEXION
 # =====================================================================
-@never_cache
+@method_decorator(never_cache, name='dispatch')
 class LoginView(View):
     template_name = 'account/login.html'
 
